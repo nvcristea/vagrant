@@ -124,5 +124,5 @@ nodeAndNPM
 webConfigs
 composerInstall
 webServicesStart
-sf2Install
+#sf2Install
 finalStatus

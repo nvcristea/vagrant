@@ -16,10 +16,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, :path => "../bash/bootstrap.sh"
   config.vm.network :private_network, ip: "10.1.1.10"
   config.vm.synced_folder "../", "/vagrant", :nfs => true
-  # config.vm.synced_folder "../../", "/var/www/project", :nfs => true
+  # config.vm.synced_folder "../../sf2_proj", "/var/www/sf2_proj", :nfs => true
 
   config.vm.provider :virtualbox do |vb|
-    vb.name = "gpm64ssd_centos6"
+    vb.name = "centos6_64ssd"
     vb.gui = false
     vb.customize ["modifyvm", :id, "--memory", "1280"]
     vb.customize ["modifyvm", :id, "--ioapic", "on"]
