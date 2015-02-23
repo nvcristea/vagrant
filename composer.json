@@ -1,0 +1,12 @@
+{
+  "name": "enkas/vagrant",
+  "type": "library",
+  "description": "Shell scripts to install and configure Cent OS 6",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Nicolae V. Cristea",
+      "email": "contact@cristea.me"
+    }
+  ]
+}

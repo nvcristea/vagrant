@@ -1,0 +1,7 @@
+
+.ideea
+.vagrant
+log/*
+
+_conf/apache/vhosts/*
+!_conf/apache/vhosts/vhost.conf
