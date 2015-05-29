@@ -21,6 +21,12 @@ sudo nano /etc/hosts
 
 ### Step2: Install via Composer
 
+``` bash
+composer create-project enkas/vagrant --prefer-dist -s dev
+```
+
+OR
+
 create file composer.json
 
 ```
@@ -46,6 +52,6 @@ Access from local machine the address:
 
 To connect to your vagrant server
 
-```bash
+``` bash
 vagrant ssh
 ```
