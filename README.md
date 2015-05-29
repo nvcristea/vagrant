@@ -22,7 +22,7 @@ sudo nano /etc/hosts
 ### Step2: Install via Composer
 
 ``` bash
-composer create-project enkas/vagrant --prefer-dist -s dev
+composer require enkas/vagrant:dev-master
 ```
 
 OR
