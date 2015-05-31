@@ -40,29 +40,33 @@ function finalStatus() {
     echo "=== VAGRANT INIT FINISHED! ==="
 }
 
-BASH_TASKS_PATH="/tmp/bash-tasks"
+echo "Booting Env: ${1}"
+echo "VM_BASH_TASKS_PATH: ${2}"
 
 ## Production Minimal
-sh ${BASH_TASKS_PATH}/centos/install.sh httpd
-sh ${BASH_TASKS_PATH}/centos/install.sh mysql
-sh ${BASH_TASKS_PATH}/centos/install.sh php
-sh ${BASH_TASKS_PATH}/centos/install.sh composer
+sh ${2}/centos/install.sh httpd
+sh ${2}/centos/install.sh mysql
+sh ${2}/centos/install.sh php
+sh ${2}/centos/install.sh composer
 
-## Production Additional
-sh ${BASH_TASKS_PATH}/centos/install.sh php_pecl_tools
-sh ${BASH_TASKS_PATH}/centos/install.sh icu
-sh ${BASH_TASKS_PATH}/centos/install.sh nodejs
-sh ${BASH_TASKS_PATH}/centos/install.sh tools
-sh ${BASH_TASKS_PATH}/centos/install.sh update
+if [ "{$1}" = "prod" -o "{$1}" = "dev" ] ; then
+    ## Production Additional
+    sh ${2}/centos/install.sh php_pecl_tools
+    sh ${2}/centos/install.sh icu
+    sh ${2}/centos/install.sh nodejs
+    sh ${2}/centos/install.sh tools
+    sh ${2}/centos/install.sh phpmyadmin
+    sh ${2}/centos/install.sh update
 
-## Development
-sh ${BASH_TASKS_PATH}/centos/install.sh phpmyadmin
-sh ${BASH_TASKS_PATH}/centos/install.sh php_dev_tools
-sh ${BASH_TASKS_PATH}/centos/install.sh phpunit
-sh ${BASH_TASKS_PATH}/centos/install.sh xdebug
-sh ${BASH_TASKS_PATH}/centos/install.sh xhprof
-sh ${BASH_TASKS_PATH}/centos/install.sh update
-
+    if [ "{$1}" = "dev" ] ; then
+        ## Development
+        sh ${2}/centos/install.sh php_dev_tools
+        sh ${2}/centos/install.sh phpunit
+        sh ${2}/centos/install.sh xdebug
+        sh ${2}/centos/install.sh xhprof
+        sh ${2}/centos/install.sh update
+    fi
+fi
 
 # Config
 webConfigs
