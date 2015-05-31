@@ -1,12 +1,16 @@
 {
   "name": "enkas/vagrant",
   "type": "library",
-  "description": "Shell scripts to install and configure Cent OS 6",
+  "description": "Shell scripts to install and configure Cent OS 6 trough Vagrant Up",
   "license": "MIT",
   "authors": [
     {
       "name": "Nicolae V. Cristea",
       "email": "contact@cristea.me"
     }
-  ]
+  ],
+  "require": {
+    "enkas/bash-tasks": "dev-master"
+  },
+  "minimum-stability": "stable"
 }

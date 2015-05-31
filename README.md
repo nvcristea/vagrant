@@ -21,13 +21,11 @@ sudo nano /etc/hosts
 
 ### Step2: Install via Composer
 
-``` bash
+```bash
 composer require enkas/vagrant:dev-master
 ```
 
-OR
-
-create file composer.json
+or add to your composer.json
 
 ```
 {
@@ -38,7 +36,7 @@ create file composer.json
 ```
 
 
-``` bash
+```bash
 cd vendor/enkas/vagrant/64bit-ssd
 vagrant up
 ```
@@ -52,6 +50,6 @@ Access from local machine the address:
 
 To connect to your vagrant server
 
-``` bash
+```bash
 vagrant ssh
 ```
