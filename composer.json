@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "enkas/bash-tasks": "dev-master"
+    "enkas/bash-tasks": "~0.1.0"
   },
   "minimum-stability": "stable"
 }
