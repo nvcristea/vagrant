@@ -1,13 +1,17 @@
 #!/usr/bin/ruby
 
-VB_NAME = "centos6_web_lo"
+if File.file?('../../../my_conf.rb')
+  load '../../../my_conf.rb'
+end
 
-VM_HOSTNAME = "web.lo"
-VM_IP = "192.168.33.10"
+VB_NAME = "centos6_web_lo" unless defined? VB_NAME
 
-MOUNT_WWW_PATH = "../../www_web"
-BASH_TASKS_PATH = "../bash-tasks"
-VM_BASH_TASKS_PATH = "/tmp/bash-tasks"
+VM_HOSTNAME = "web.lo" unless defined? VM_HOSTNAME
+VM_IP = "192.168.33.10" unless defined? VM_IP
 
-ENV_MODS = ["prod_min", "prod", "dev"]
-BOOT_ENV = ENV_MODS[1]
+MOUNT_WWW_PATH = "../../../www_web" unless defined? MOUNT_WWW_PATH
+BASH_TASKS_PATH = "../bash-tasks" unless defined? BASH_TASKS_PATH
+VM_BASH_TASKS_PATH = "/tmp/bash-tasks" unless defined? VM_BASH_TASKS_PATH
+
+ENV_MODS = ["prod_min", "prod", "dev"] unless defined? ENV_MODS
+BOOT_ENV = ENV_MODS[1] unless defined? BOOT_ENV

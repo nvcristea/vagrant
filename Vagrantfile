@@ -3,10 +3,6 @@
 
 require './config.rb'
 
-if File.file?('../../../config.rb')
-  load '../../../config.rb'
-end
-
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
