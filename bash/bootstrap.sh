@@ -21,7 +21,7 @@ function sf2Install() {
 function webConfigs() {
 
     echo "=== webConfigs ==="
-    mkdir /vagrant/log
+    mkdir -p /vagrant/log
     ln -fs /vagrant/_conf/apache/httpd.conf /etc/httpd/conf/httpd.conf
     ln -fs /vagrant/_conf/apache/vhosts /etc/httpd/conf.d/vhosts
     ln -fs /vagrant/_conf/extra_php.ini /etc/php.d/extra_php.ini

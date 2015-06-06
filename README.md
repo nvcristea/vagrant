@@ -17,7 +17,8 @@ If you're just getting started with Vagrant, it is highly recommended you start 
 sudo nano /etc/hosts
 ```
 
-192.168.33.10     www.vagrant.lo vagrant.lo www.web.lo web.lo
+127.0.0.1         vagrant.lo web.lo
+192.168.33.22     www.vagrant.lo www.web.lo
 
 ### Step2: Install via Composer
 
@@ -75,6 +76,12 @@ Access from local machine the address:
 - [Main space](http://www.vagrant.lo)
 - [PhpMyAdmin](http://www.vagrant.lo/phpmyadmin)
 - [Web App](http://www.web.lo)
+
+or using port forwarding 
+
+- [vagrant.lo:8022](http://vagrant.lo:8022)
+- [vagrant.lo:8022/phpmyadmin](http://vagrant.lo:8022/phpmyadmin)
+- [web.lo:8022](http://web.lo:8022)
 
 To connect to your vagrant server
 

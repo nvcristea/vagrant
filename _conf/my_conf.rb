@@ -1,13 +1,11 @@
 #!/usr/bin/ruby
+###
+# ENV_ID should be between 10 and 99
+# ENV_MOD: 0 - PROD MIN ; 1 - PROD ; 2 - DEV
+####
 
-VB_NAME = "centos6_web_lo"
-
-VM_HOSTNAME = "web.lo"
-VM_IP = "192.168.33.10"
+ENV_ID = 22
+ENV_MOD = 1
+ENV_NAME = "web.lo"
 
 MOUNT_WWW_PATH = "../../../www_web"
-BASH_TASKS_PATH = "../bash-tasks"
-VM_BASH_TASKS_PATH = "/tmp/bash-tasks"
-
-ENV_MODS = ["prod_min", "prod", "dev"]
-BOOT_ENV = ENV_MODS[1]

@@ -8,13 +8,14 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  # config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.network :forwarded_port, guest: 22, host: "22#{ENV_ID}", id: 'ssh'
+  config.vm.network :forwarded_port, guest: 80, host: "80#{ENV_ID}"
   # config.vm.network :public_network
   # config.ssh.forward_agent = true
 
   config.vm.synced_folder "./", "/vagrant"
   config.vm.synced_folder "#{BASH_TASKS_PATH}", "#{VM_BASH_TASKS_PATH}"
-  config.vm.synced_folder "#{MOUNT_WWW_PATH}", "/var/www/web", :nfs => true
+  config.vm.synced_folder "#{MOUNT_WWW_PATH}", "/var/www/web", :nfs => true, :mount_options => ['nolock']
 
   config.vm.provider :virtualbox do |vb|
     vb.name = "#{VB_NAME}"
@@ -33,7 +34,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     web.vm.hostname="#{VM_HOSTNAME}"
     web.vm.network :private_network, ip: "#{VM_IP}"
-    web.vm.provision :shell, :path => "bash/bootstrap.sh", :args => ["#{BOOT_ENV}", "#{VM_BASH_TASKS_PATH}"]
+    web.vm.provision :shell, :path => "bash/bootstrap.sh", :args => ["#{ENV_MODS[ENV_MOD]}", "#{VM_BASH_TASKS_PATH}"]
 
   end
 
