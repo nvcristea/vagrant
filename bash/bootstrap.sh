@@ -49,7 +49,7 @@ sh ${2}/centos/install.sh mysql
 sh ${2}/centos/install.sh php
 sh ${2}/centos/install.sh composer
 
-if [ "{$1}" = "prod" -o "{$1}" = "dev" ] ; then
+if [ $1 == 'prod' ] || [ $1 == 'dev' ] ; then
     ## Production Additional
     sh ${2}/centos/install.sh php_pecl_tools
     sh ${2}/centos/install.sh icu
@@ -58,7 +58,7 @@ if [ "{$1}" = "prod" -o "{$1}" = "dev" ] ; then
     sh ${2}/centos/install.sh phpmyadmin
     sh ${2}/centos/install.sh update
 
-    if [ "{$1}" = "dev" ] ; then
+    if [ $1 == 'dev' ] ; then
         ## Development
         sh ${2}/centos/install.sh php_dev_tools
         sh ${2}/centos/install.sh phpunit
