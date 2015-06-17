@@ -40,7 +40,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-  config.vm.define "web.lo" do |web|
+  config.vm.define "#{VB_NAME}" do |web|
 
     web.vm.hostname="#{VM_HOSTNAME}"
     web.vm.network :private_network, ip: "#{VM_IP}"
