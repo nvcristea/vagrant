@@ -13,6 +13,8 @@ VB_NAME = "centos6_#{ENV_NAME}" unless defined? VB_NAME
 VM_HOSTNAME = ENV_NAME unless defined? VM_HOSTNAME
 VM_IP = "192.168.33.#{ENV_ID}"
 
+NFS_FOLDERS = false unless defined? NFS_FOLDERS
+
 VB_MEMORY = 512 unless defined? VB_MEMORY
 VB_CPU = 2 unless defined? VB_CPU
 VB_CPU_BIT = 64 unless defined? VB_CPU_BIT

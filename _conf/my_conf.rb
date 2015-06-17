@@ -8,6 +8,7 @@
 ENV_ID = 22
 ENV_MOD = 1
 ENV_NAME = "web.lo"
+NFS_FOLDERS = false
 
 VB_MEMORY = 512
 VB_CPU = 2
