@@ -15,10 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.synced_folder "./", "/vagrant"
   config.vm.synced_folder "#{BASH_TASKS_PATH}", "#{VM_BASH_TASKS_PATH}"
-  config.vm.synced_folder "#{MOUNT_WWW_PATH}", "/var/www/web"
-  if "#{NFS_FOLDERS}" == "true"
-    config.vm.synced_folder "#{MOUNT_WWW_PATH}", "/var/www/web", :nfs => true, :mount_options => ['nolock']
-  end
+  config.vm.synced_folder "#{MOUNT_WWW_PATH}", "/var/www/web", type: "#{VM_SYNC[0]}", mount_options: ["#{VM_SYNC[1]}"]
 
   config.vm.box = "centos65-x86_64"
   config.vm.box_url = "https://github.com/2creatives/vagrant-centos/releases/download/v6.5.1/centos65-x86_64-20131205.box"
