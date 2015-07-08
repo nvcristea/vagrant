@@ -1,6 +1,8 @@
 #!/usr/bin/ruby
 
-if File.file?('../../../my_conf.rb')
+if File.file?('dev_conf.rb') then
+    load 'dev_conf.rb'
+elsif File.file?('../../../my_conf.rb')
     load '../../../my_conf.rb'
 end
 
