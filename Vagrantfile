@@ -1,47 +1,61 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-require './config.rb'
+require 'yaml'
+require './app/config.rb'
+
+puts "#{VM['name']}_#{VM['hostname']} #{VM['network']['private_ip']}"
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.network :forwarded_port, guest: 22, host: "22#{ENV_ID}", id: 'ssh'
-  config.vm.network :forwarded_port, guest: 80, host: "80#{ENV_ID}"
-  # config.vm.network :public_network
-  # config.ssh.forward_agent = true
+  if "#{VM['forward_agent']}" == "true"
+    config.ssh.forward_agent = true
+  end
 
-  config.vm.synced_folder "./", "/vagrant"
-  config.vm.synced_folder "#{BASH_TASKS_PATH}", "#{VM_BASH_TASKS_PATH}"
-  config.vm.synced_folder "#{MOUNT_WWW_PATH}", "/var/www/web", type: "#{VM_SYNC[0]}", mount_options: ["#{VM_SYNC[1]}"]
+  if "#{VM['network']['public']}" == "true"
+    config.vm.network :public_network
+  end
+
+  # Port Forwarding
+  if "#{VM['forward_port']}" == "true"
+    VM['forwarded_port'].each do |fp_guest, fp_host|
+      config.vm.network :forwarded_port, guest: "#{fp_guest}", host: "#{fp_host}"
+    end
+  end
+
+  config.vm.synced_folder "#{CONF['vendor']['path']}/enkas/bash-tasks", "/tmp/bash-tasks"
+  VM['sync_folders'].each do |share|
+    config.vm.synced_folder share['source'], share['target'], type: "#{VM['sync_types'][share['type']][0]}", mount_options: ["#{VM['sync_types'][share['type']][1]}"]
+  end
 
   config.vm.box = "centos65-x86_64"
-  config.vm.box_url = "https://github.com/2creatives/vagrant-centos/releases/download/v6.5.1/centos65-x86_64-20131205.box"
+  config.vm.box_url = "#{CONF['box']['centos65-x86_64']}"
 
-  if "#{VB_CPU_BIT}" == "32"
+  if "#{VM['cpu_bit']}" == "32"
     config.vm.box = "centos6-i368"
-    config.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-i386-v20131103.box"
+    config.vm.box_url = "#{CONF['box']['centos6-i368']}"
   end
 
   config.vm.provider :virtualbox do |vb|
-    vb.name = "#{VB_NAME}"
+    vb.name = "#{VM['name']}_#{VM['hostname']}"
     vb.gui = false
-    vb.customize ["modifyvm", :id, "--memory", "#{VB_MEMORY}"]
+    vb.customize ["modifyvm", :id, "--memory", "#{VM['memory']}"]
     vb.customize ["modifyvm", :id, "--ioapic", "on"]
-    vb.customize ["modifyvm", :id, "--cpus", "#{VB_CPU}"]
-    if "#{VB_SATA}" == "true"
+    vb.customize ["modifyvm", :id, "--cpus", "#{VM['cpus']}"]
+    if "#{VM['ssd']}" == "true"
       vb.customize ['storageattach', :id, '--storagectl', 'SATA',
                       '--port', '0', '--nonrotational', 'on']
     end
   end
 
-  config.vm.define "#{VB_NAME}" do |web|
+  config.vm.define "#{VM['name']}_#{VM['hostname']}" do |web|
 
-    web.vm.hostname="#{VM_HOSTNAME}"
-    web.vm.network :private_network, ip: "#{VM_IP}"
-    web.vm.provision :shell, :path => "bash/bootstrap.sh", :args => ["#{ENV_MODS[ENV_MOD]}", "#{VM_BASH_TASKS_PATH}"]
+    web.vm.hostname="#{VM['hostname']}"
+    web.vm.network :private_network, ip: "#{VM['network']['private_ip']}"
+    web.vm.provision :shell, :path => "app/bash/bootstrap.sh", :args => ["#{VM['mode']}", "/tmp/bash-tasks"]
 
   end
 

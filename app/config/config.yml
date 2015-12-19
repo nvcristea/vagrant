@@ -1,0 +1,30 @@
+box:
+  centos65-x86_64: https://github.com/2creatives/vagrant-centos/releases/download/v6.5.1/centos65-x86_64-20131205.box
+  centos6-i368: http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-i386-v20131103.box
+
+vendor:
+  path: ./vendor
+
+vm:
+  mode: prod  # ['prod_min', 'prod', 'dev']
+  name: VUP_CentOS6
+  hostname: von.lo
+  network:
+    public: false
+    private_ip: 192.168.33.22
+  cpus: 2
+  cpu_bit: 64
+  ssd: true
+  memory: 2048
+  video_memory: 8
+  forward_agent: true
+  forward_port: false
+  forwarded_port:
+    80: 8080
+  sync_types:
+    vm: ['', '']
+    nfs: ['nfs', 'nolock']
+    smb: ['smb', 'dmode=775,fmode=664']
+  sync_folders:
+    - { source: ./app/logs, target: /var/log/httpd, type: vm }
+    - { source: ./web/info, target: /var/www/html/info, type: vm }

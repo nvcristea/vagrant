@@ -1,9 +1,12 @@
 
+*~
+.DS_Store
 .idea
 .vagrant
-log/*
-dev_conf.rb
 
+app/logs/*
 _conf/apache/vhosts/*
 !_conf/apache/vhosts/vhost.conf
 !_conf/apache/vhosts/web.conf
+/vendor
+composer.lock
