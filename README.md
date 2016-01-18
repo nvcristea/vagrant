@@ -50,12 +50,8 @@ or add to your composer.json
 
 #### Step3.1: Optional overwrite vagrant constants  
 
-you may copy, the ./vendor/enkas/vagrant/_conf/my_conf.rb to ./my_conf.rb and change change your 
-environmental constants as you want
+create [app/config/_private.yml](app/config/_private.yml) and overwrite default [config.yml](app/config/config.yml) as you want
 
-```bash
-cp ./vendor/enkas/vagrant/_conf/my_conf.rb ./my_conf.rb
-```
 
 #### Step3.2: Create web folder  
 

@@ -5,6 +5,7 @@
 .vagrant
 
 app/logs/*
+app/config/_private.yml
 _conf/apache/vhosts/*
 !_conf/apache/vhosts/vhost.conf
 !_conf/apache/vhosts/web.conf
